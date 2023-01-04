@@ -1,0 +1,47 @@
+//This is call-by-value
+
+
+#include <stdio.h>
+
+void swap(int x, int y)
+{
+    x=x+y;
+    y=x-y;
+    x=x-y;
+    printf("Inside the function body:\n x=%d\ty=%d\n",x,y);
+}
+
+int main()
+{
+    int a=10,b=20;
+    printf("Before function call:\n a=%d\tb=%d\n",a,b);
+    swap(a,b);
+    printf("After function call:\n a=%d\tb=%d\n",a,b);
+    return 0;
+}
+
+
+
+
+
+
+
+//This is call by reference
+#include <stdio.h>
+
+void swap(int *x, int *y)
+{
+    *x=*x+*y;
+    *y=*x-*y;
+    *x=*x-*y;
+    //printf("Inside the function body:\n x=%d\ty=%d\n",*x,*y);
+}
+
+int main()
+{
+    int a=10,b=20;
+    printf("Before function call:\n a=%d\tb=%d\n",a,b);
+    swap(&a,&b);
+    printf("After function call:\n a=%d\tb=%d\n",a,b);
+    return 0;
+}
