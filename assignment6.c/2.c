@@ -1,71 +1,45 @@
+#include <math.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <time.h>
-
-int randomRange(int lower,int upper)
+void randomPasswordGeneration(int N)
 {
-	return (clock()%(upper-lower+1))+lower;	
-}
+	int i = 0;
+	int randomizer = 0;
+	srand((unsigned int)(time(NULL)));
+	char numbers[] = "0123456789";
+	char letter[] = "abcdefghijklmnoqprstuvwyzx";
+	char LETTER[] = "ABCDEFGHIJKLMNOQPRSTUYWVZX";
+	char symbols[] = "!@#$^&*?";
+	char password[N];
+	randomizer = rand() % 4;
+	for (i = 0; i < N; i++) {
 
-char smallLetter()
-{
-	return randomRange(97,122);
-}
-
-char capitalLetter()
-{
-	return randomRange(65,90);
-}
-
-char digits()
-{
-	return randomRange(48,57);
-}
-
-char symbols()
-{
-	char sym[]={'~','`','!','@','#','$','%','^','&','*','(',')','-','_','+','=','{','}','[',']','|','\\',':',';','"','<','>',',','.','/','?','\''};
-	return sym[randomRange(0,31)];
-}
-
-void shuffle(char str[])
-{
-	for(int i=0;str[i]!='\0';i++)
-		{
-			int c=randomRange(0,7);
-			if (i!=c)
-			{
-				str[i]=str[i]^str[c];
-				str[c]=str[i]^str[c];
-				str[i]=str[i]^str[c];
-			}
+		if (randomizer == 1) {
+			password[i] = numbers[rand() % 10];
+			randomizer = rand() % 4;
+			printf("%c", password[i]);
 		}
-}	
-
-void password(char s[])
-{
-	s[0]=smallLetter();
-	s[1]=capitalLetter();
-	s[2]=digits();
-	s[3]=symbols();
-	for(int i=4;i<8;i++)
-	{
-		int c=randomRange(1,4);
-		if(c==1)
-			s[i]=smallLetter();
-		else if(c==2)
-			s[i]=capitalLetter();
-		else if(c==3)
-			s[i]=digits();
-		else if(c==4)
-			s[i]=symbols();
+		else if (randomizer == 2) {
+			password[i] = symbols[rand() % 8];
+			randomizer = rand() % 4;
+			printf("%c", password[i]);
+		}
+		else if (randomizer == 3) {
+			password[i] = LETTER[rand() % 26];
+			randomizer = rand() % 4;
+			printf("%c", password[i]);
+		}
+		else {
+			password[i] = letter[rand() % 26];
+			randomizer = rand() % 4;
+			printf("%c", password[i]);
+		}
 	}
-	shuffle(s);
-	s[8]='\0';
 }
-
-void main()
+int main()
 {
-	char pass[9];
-	password(pass);
-	printf("Generated password: %s",pass);
+	int N=8;
+	randomPasswordGeneration(N);
+	return 0;
 }
