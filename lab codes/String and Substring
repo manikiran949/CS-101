@@ -1,0 +1,54 @@
+/*  
+ * C program to accept a string and a substring and
+ * check if the substring is present in the given string
+ */
+#include<stdio.h>
+ 
+int main()
+{
+    char str[80], search[10];
+    int count1 = 0, count2 = 0, i, j, flag;
+ 
+    printf("Enter a string:");
+    gets(str);
+    printf("Enter search substring:");
+    gets(search);
+    while (str[count1] != '\0')
+        count1++;
+    while (search[count2] != '\0')
+        count2++;
+    for (i = 0; i <= count1 - count2; i++)
+    {
+        for (j = i; j < i + count2; j++)
+        {
+            flag = 1;
+            if (str[j] != search[j - i])
+            {
+                flag = 0;
+                break;
+            }
+        }
+        if (flag == 1)
+            break;
+    }
+    if (flag == 1)
+        printf("YES!");
+    else
+        printf("NO!");
+ 
+    return 0;
+}
+
+/*
+EXPLANATION:
+In this C program, we are reading a string using gets() function ‘str’ character variable. We are reading value another string to search using search character variable. To check substring is present in the given string. While loop is used to compute the str[] and search[] array variable value is not equal to null.
+If the condition is true then execute the iteration of the loop. Increment the values of ‘count1 and count2 variable values. Now we are using two for loops to check if the substring is present in the given string. We are initializing the ‘i’ variable value to 0 and the loop will execute till the condition that ‘i’ variable value should be less than or equal to the difference of count1 and count2 variable values.
+
+If the condition is true, then another for loop will execute by initializing the ‘i’ variable value to ‘j’ variable. And the loop will terminate if the ‘j’ variable value is less than the sum of ‘i’ variable value with count2 variable value if the condition is true.
+
+Then it will execute the loop by assigning the flag variable value as 1 and if condition statement is used to check the str[] array variable value is not equal to search[] with the base index is the difference between ‘j’ variable and ‘i’ variable value. If the condition is true then it will execute the statement and assign flag variable value as 0.
+For loop iteration will terminate till the condition becomes false. If-else condition statement is used to check if flag variable value is equal to 1 then print as search successful otherwise if the condition is false then print the statement as search unsuccessful.
+
+
+
+*/
